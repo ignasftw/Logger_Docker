@@ -1,13 +1,3 @@
-import com.profesorfalken.jsensors.JSensors;
-import com.profesorfalken.jsensors.model.components.Components;
-import com.profesorfalken.jsensors.model.components.Cpu;
-import com.profesorfalken.jsensors.model.sensors.Temperature;
-import org.json.JSONObject;
-
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-
 public class Logger {
     public Logger(){
         int i = 0;
@@ -32,5 +22,6 @@ public class Logger {
         //    json.put("temp",temp);
         //    System.out.println(json);
         }
+            new MessageSender();
     }
 }
