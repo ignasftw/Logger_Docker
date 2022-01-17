@@ -1,6 +1,4 @@
 FROM maven
-COPY ./Logger/target/classes/ /tmp
-WORKDIR /tmp
-COPY /Logger/pom.xml .
-RUN mvn dependency:go-offline
-ENTRYPOINT ["java","Main"]
+COPY ./Logger/artifacts/Logger_jar/Logger.jar .
+EXPOSE 4500
+ENTRYPOINT ["java","-jar","Logger.jar"]

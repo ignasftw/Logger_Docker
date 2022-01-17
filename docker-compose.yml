@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+    app:
+        depends_on:
+            - mysql
+        image: ignotasburba/logger-app:1.0
+        ports:
+            - 3308:3306
+    mysql:
+        image: ignotasburba/logger-mysql:1.0
+        network_mode: "host"
+        ports:
+            - 3307:3306
+        volumes:
+            - ./mysql:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root

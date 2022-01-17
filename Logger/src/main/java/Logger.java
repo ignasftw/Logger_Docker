@@ -1,8 +1,8 @@
 public class Logger {
     public Logger(){
         int i = 0;
-        while(i++ < 10){
-        System.out.println("Information: " + i);
+        //while(i++ < 10){
+        //System.out.println("Information: " + i);
         //String time = "";
         //String temp = "";
         //Components components = JSensors.get.components();
@@ -21,7 +21,7 @@ public class Logger {
         //    json.put("time",time);
         //    json.put("temp",temp);
         //    System.out.println(json);
-        }
+        //}
             new MessageSender();
     }
 }

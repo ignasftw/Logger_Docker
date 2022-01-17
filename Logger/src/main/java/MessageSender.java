@@ -4,7 +4,7 @@ public class MessageSender {
     public MessageSender(){
         String uname = "root";
         String password = "root";
-        String query =  "SELECT * FROM person";
+        String query =  "SELECT * FROM client";
         String url = "jdbc:mysql://localhost:3307/clients";
 
         try {
@@ -20,7 +20,7 @@ public class MessageSender {
             ResultSet rs=stmt.executeQuery(query);
             while(rs.next()){
                 String data = "";
-                for (int i=1; i<=2;i++){
+                for (int i=1; i<=3;i++){
                     data += rs.getString(i) + " ";
                 }
                 System.out.println(data);
