@@ -1,10 +1,14 @@
 version: "3.8"
 
+#docker run --rm -p3306:3306 -eMYSQL_ALLOW_EMPTY_PASSWORD=true mysql
 services:
   app:
-    image: ignotasburba/logger-app:1.0
+    #image: ignotasburba/logger-app:1.0
+    build:
+      context: ./Logger
+      dockerfile: Dockerfile
     ports:
-      - 3308:4000
+      - 3308:3306
     depends_on:
       mysql:
         condition: service_healthy
@@ -13,7 +17,7 @@ services:
   mysql:
     image: mysql:8
     ports:
-      - 3006:4000
+      - 3306:3306
     volumes:
       - mysqldb:/var/lib/mysql
     environment:
@@ -25,8 +29,5 @@ services:
       retries: 5
 volumes:
   mysqldb:
-  
 networks:
   default:
-    external: true
-    name: logger-net

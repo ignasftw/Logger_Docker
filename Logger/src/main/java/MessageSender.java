@@ -4,9 +4,9 @@ public class MessageSender {
     public MessageSender(){
         String uname = "root";
         String password = "root";
-        String query =  "show databases";
+        String query = "INSERT INTO Cpu (temperature) VALUES (100);";
+
         String url = "jdbc:mysql://logger_docker_mysql_1:3306";
-        //String url = "jdbc:mysql://localhost:3306/clients";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -18,10 +18,14 @@ public class MessageSender {
         try {
             con = DriverManager.getConnection(url,uname,password);
             Statement stmt=con.createStatement();
-            ResultSet rs=stmt.executeQuery(query);
+
+            stmt.executeQuery("use Temperature;");
+            //stmt.executeUpdate(query);
+            ResultSet rs= stmt.executeQuery("SELECT * FROM Cpu;");
+
             while(rs.next()){
                 String data = "";
-                for (int i=1; i<=1;i++){
+                for (int i=1; i<=3;i++){
                     data += rs.getString(i) + " ";
                 }
                 System.out.println(data);
