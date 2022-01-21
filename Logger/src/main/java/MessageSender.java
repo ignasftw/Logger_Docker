@@ -4,8 +4,8 @@ public class MessageSender {
     public MessageSender(){
         String uname = "root";
         String password = "root";
-        String query =  "SELECT * FROM person";
-        String url = "jdbc:mysql://host.docker.internal:3306/clients";
+        String query =  "show databases";
+        String url = "jdbc:mysql://logger_docker_mysql_1:3306";
         //String url = "jdbc:mysql://localhost:3306/clients";
 
         try {
@@ -21,7 +21,7 @@ public class MessageSender {
             ResultSet rs=stmt.executeQuery(query);
             while(rs.next()){
                 String data = "";
-                for (int i=1; i<=2;i++){
+                for (int i=1; i<=1;i++){
                     data += rs.getString(i) + " ";
                 }
                 System.out.println(data);

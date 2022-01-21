@@ -1,17 +1,32 @@
 version: "3.8"
 
 services:
-    app:
-        depends_on:
-            - mysql
-        image: ignotasburba/logger-app:1.0
-        ports:
-            - 3308:3306
-    mysql:
-        image: ignotasburba/logger-mysql:1.0
-        ports:
-            - 3307:3306
-        volumes:
-            - ./mysql:/var/lib/mysql
-        environment:
-            MYSQL_ROOT_PASSWORD: root
+  app:
+    image: ignotasburba/logger-app:1.0
+    ports:
+      - 3308:4000
+    depends_on:
+      mysql:
+        condition: service_healthy
+    links: 
+        - mysql
+  mysql:
+    image: mysql:8
+    ports:
+      - 3006:4000
+    volumes:
+      - mysqldb:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+volumes:
+  mysqldb:
+  
+networks:
+  default:
+    external: true
+    name: logger-net
